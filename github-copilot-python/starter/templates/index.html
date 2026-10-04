@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Sudoku Studio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">NUMBER LOGIC</p><h1>Sudoku Studio</h1></div>
+      <button id="theme-toggle" class="quiet-button" type="button" aria-pressed="false">☾ <span>Dark mode</span></button>
+    </header>
+
+    <section class="game-layout" aria-label="Sudoku game">
+      <div class="game-panel">
+        <div class="game-heading">
+          <div><p class="eyebrow">YOUR DAILY RESET</p><h2>Make your next move.</h2></div>
+          <div class="timer-wrap" role="timer" aria-label="Elapsed time" aria-live="off"><span class="eyebrow">TIME</span><strong id="timer">00:00</strong></div>
+        </div>
+        <div class="toolbar">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option>
+          </select>
+          <button id="new-game" type="button">New puzzle</button>
+        </div>
+        <p id="board-instructions" class="visually-hidden">Enter digits 1 through 9. Use the arrow keys to move between editable cells; Tab moves through controls and cells.</p>
+        <div id="sudoku-board" class="sudoku-board" role="group" aria-label="Sudoku board" aria-describedby="board-instructions"></div>
+        <div class="action-row">
+          <button id="check-solution" class="secondary-button" type="button">Check puzzle</button>
+          <button id="hint-button" class="secondary-button" type="button">Hint <span aria-hidden="true">✦</span></button>
+        </div>
+        <p id="message" class="message" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+
+      <aside class="side-panel">
+        <section class="note-card"><span class="card-icon" aria-hidden="true">✳</span><h2>A little at a time.</h2><p>Take a breath, scan a row, and let the pattern come to you.</p></section>
+        <section class="scores-card" aria-labelledby="scores-title"><div class="scores-heading"><div><p class="eyebrow">PERSONAL BESTS</p><h2 id="scores-title">Fastest times</h2></div><span class="top-ten">TOP 10</span></div>
+          <form id="player-form" class="player-form"><label for="player-name">Your name for the board</label><div><input id="player-name" maxlength="24" placeholder="Player name"><button type="submit" aria-label="Save name">Save</button></div></form>
+          <ol id="score-list" class="score-list"></ol><p id="empty-scores" class="empty-scores">Solve a puzzle to add your first time.</p>
+        </section>
+      </aside>
+    </section>
+    <footer>One board. One calm moment.</footer>
+  </main>
+</body>
+</html>
